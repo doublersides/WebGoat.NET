@@ -26,6 +26,7 @@ namespace OWASP.WebGoat.NET
 
                 //Info leak
                 HttpCookie cookie = new HttpCookie("Server", Encoder.Encode(Server.MachineName));
+                cookie.Domain = Request.Url.Host; // TODO: Validate this host matches the intended deployment domain scope.
                 Response.Cookies.Add(cookie);
             }
             else
